@@ -1,15 +1,22 @@
 function getFahrenheits(result){
-  // Your code goes here
+  return result.hourly_forecast.map(forecast => {
+    return forecast.temp.english
+  })
 }
 
 function getHours(result){
-  // Your code goes here
+  return result.hourly_forecast.map(forecast => {
+    return forecast.FCTTIME.hour
+  })
 }
 
 function generateDataSet(labels, data) {
-  // Your code goes here
+  return {
+    labels: labels,
+    data: data.map(s => +s)
+  }
 }
 
-function makeAjaxRequest(endpoint, success) {
-  // Your code goes here
+function makeFetchRequest(endpoint, success) {
+  fetch(endpoint, success).then(res => res.json()).then(json => success(json));
 }
